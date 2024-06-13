@@ -7,16 +7,17 @@ namespace MusicAPI.Models
     [Table("singer_table")]
     public class Singer
     {
-        public Singer() {
-            
+        public Singer()
+        {
+            Musicas = new Collection<Musica>();
         }
 
         [Key]
         public int SingerId { get; set; }
         [Required]
         [StringLength(50)]
-        public string? SingerName { get; set;}
+        public string? SingerName { get; set; }
 
-        public ICollection<Musica>
-    
+        public ICollection<Musica> Musicas { get; set; }
+    }
 }
