@@ -20,21 +20,23 @@ namespace MusicAPI.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Singer>> PegarTodos()
         {
-            var singers = _appDbContext.Singers.ToList();
+            var singers = _appDbContext.Singers.Include(s=>s.Musicas).Where(c=>c.SingerId <=6).AsNoTracking().ToList();
             if(singers is null)
             {
                 return NotFound();
             }
+
             return singers;
         }
 
         [HttpGet("{id:int}",Name ="ObterSinger")]
         public ActionResult<Singer> PegarUm(int id) {
-            var singer = _appDbContext.Singers.FirstOrDefault(singer => singer.SingerId == id);
+            var singer = _appDbContext.Singers.AsNoTracking().FirstOrDefault(singer => singer.SingerId == id);
             if (singer is null)
             {
                 return NotFound();
             }
+
             return singer;
         }
 

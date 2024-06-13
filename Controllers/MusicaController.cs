@@ -18,7 +18,7 @@ namespace MusicAPI.Controllers
 
         [HttpGet]
         public ActionResult<IEnumerable<Musica>> PegarTodos() {
-            var musicas = _appDbContext.Musicas.ToList();
+            var musicas = _appDbContext.Musicas.AsNoTracking().ToList();
 
             if (musicas is null)
                 return NotFound();
@@ -28,7 +28,7 @@ namespace MusicAPI.Controllers
 
         [HttpGet("{id:int}", Name ="PegarMusica")]
         public ActionResult<Musica> PegarUm(int id) { 
-            var musica = _appDbContext.Musicas.FirstOrDefault(m=> m.MusicaId == id);
+            var musica = _appDbContext.Musicas.AsNoTracking().FirstOrDefault(m=> m.MusicaId == id);
 
             if (musica is null) return NotFound();
 

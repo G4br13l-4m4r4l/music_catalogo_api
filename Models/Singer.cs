@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MusicAPI.Models
 {
@@ -17,7 +18,7 @@ namespace MusicAPI.Models
         [Required]
         [StringLength(50)]
         public string? SingerName { get; set; }
-
+        [JsonIgnore]
         public ICollection<Musica> Musicas { get; set; }
     }
 }

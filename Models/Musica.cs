@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace MusicAPI.Models
 {
@@ -18,6 +19,8 @@ namespace MusicAPI.Models
         public string? Album  { get; set; }
 
         public int SingerId { get; set;}
+
+        [JsonIgnore]
         public Singer? singer { get; set;}
     }
 }
